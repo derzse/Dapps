@@ -1,0 +1,80 @@
+html {
+    display: table;
+    margin: auto;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+h1{
+    text-align: center;
+}
+
+ul{
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+}
+
+li{
+    padding: 40px;
+    border: 3px solid rgb(0,162,137);
+    margin-right: 30px;
+    border-radius:10px; 
+    cursor: pointer;
+    font-size: 80px;
+}
+
+li:hover{
+    background-color: rgb(0,162,137);
+    color: white;
+}
+
+li:active{
+    opacity: 0.7;
+}
+
+*{
+   color: #333;
+}
+
+.main-container{
+   padding: 20px;
+}
+
+.block-container{
+   display: flex;
+   align-items: center;
+}
+
+.number-selected{
+   background-color: rgb(0,162,137);
+   color: white;
+}
+
+.bet-input{
+   padding: 15px;
+   border-radius: 10px;
+   border: 1px solid lightgrey;
+   font-size: 15pt;
+   margin: 0 10px;
+}
+
+.cards-container {
+    display: table;
+    width: 100%;
+}
+.centre-align {
+    padding: 20px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+.cards {
+    display: inline-block;
+    vertical-align: top;
+}
