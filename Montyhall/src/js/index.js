@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import Web3 from 'web3'
 import './../css/index.css'
 
+var web3 = new Web3();
+
 class App extends React.Component {
     constructor(props){
         super(props)
@@ -14,7 +16,7 @@ class App extends React.Component {
             maxAmountOfBets: 0
         }
 
-         if(typeof web3 != 'undefined'){
+        if(typeof web3 !== 'undefined'){
             console.log("Using web3 detected from external source like Metamask")
             this.web3 = new Web3(web3.currentProvider)
         }else{
@@ -220,15 +222,13 @@ class App extends React.Component {
             ]
         )
 
-        this.state.ContractInstance = MyContract.at("0x1466162473257578fa7922d9c43b1956105364f6")
-
-        window.a = this.state
+        this.state.ContractInstance = MyContract.at("0xc349a9def2a79fcaa37f754ca290b8a59f29c127")
     }
 
     componentDidMount(){
         this.updateState()
         this.setupListeners()
-        setInterval(this.updateState.bind(this), 10e3)
+        setInterval(this.updateState.bind(this), 10000)
     }
 
     updateState(){
@@ -263,7 +263,7 @@ class App extends React.Component {
     }
 
     setupListeners(){
-        let liNodes = this.refs.numbers.querySelectorAll('li')
+        let liNodes = this.refs.numbers.querySelectorAll("li")
         liNodes.forEach(number => {
             number.addEventListener('click', event => {
                 event.target.className = 'number-selected'
@@ -278,9 +278,7 @@ class App extends React.Component {
 
     voteNumber(number, currentbet){
         let bet = this.refs['ether-bet'].value
-
         if(!bet) bet = 0.1
-
         if(parseFloat(bet) < this.state.minimumBet){
             alert('You must bet more than the minimum')
             currentbet()
@@ -299,22 +297,16 @@ class App extends React.Component {
                 <h1>Bet your number and win Ether</h1>
                 <hr/>
                 <label>
-                    <b>How much Ether do you want to bet? 
+                    <b>How much do you want to bet? 
                         <input className="bet-input" ref="ether-bet" type="number" placeholder={this.state.minimumBet}/>
-                    </b> ether <br/>
+                    </b> Ether <br/>
                 </label>
                 <h2>Select your card</h2>
-                <div class="cards-container">
-                    <div class="centre-align">
-                        <div class="cards">
-                            <ul>
-                                <li onClick={() => {this.voteNumber(1)}}>1</li>
-                                <li onClick={() => {this.voteNumber(2)}}>2</li>
-                                <li onClick={() => {this.voteNumber(3)}}>3</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <ul ref="numbers">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                </ul>
                 <hr/>
                 <h2>Statistics</h2>
                 <div className="block-container">
